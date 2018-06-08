@@ -1,0 +1,25 @@
+server:
+  port: 7301
+spring:
+  devtools:
+    restart:
+      enabled: false
+  application:
+    admin:
+      enabled: false
+logging:
+  path: log
+  level:
+    root: info
+    com.example.demo: debug
+demo:
+  db:
+    url: jdbc:mysql://localhost:3306/test
+    username: marvin
+    password: 123456
+  jms:
+    url: tcp://localhost:61616
+    username: marvin
+    password: 123456
+  jta:
+    enable: false
