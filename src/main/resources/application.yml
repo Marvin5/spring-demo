@@ -4,9 +4,11 @@ spring:
   devtools:
     restart:
       enabled: false
-  application:
-    admin:
-      enabled: false
+  security:
+    user:
+      name: marvin
+      password: 123
+      roles: admin
 logging:
   path: log
   level:
@@ -23,3 +25,16 @@ demo:
     password: 123456
   jta:
     enable: false
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      cors:
+        allowed-methods: GET,POST
+        allowed-origins: http://example.com
