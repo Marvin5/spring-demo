@@ -30,7 +30,7 @@ public class LogAspect {
             MethodSignature methodSignature = (MethodSignature) signature;
             Method method = methodSignature.getMethod();
             LogAdvice logAdvice = method.getAnnotation(LogAdvice.class);
-            logger.info("log name is {}",logAdvice.name());
+            logger.info("log name is {}", logAdvice.name());
         }
         Object[] objects = pjp.getArgs();
         try {

@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class AdviceController {
-  private static final Logger logger = LoggerFactory.getLogger(AdviceController.class);
-  @ExceptionHandler(Exception.class)
-  public ResponseEntity<String> handleException(Exception e) {
-    logger.error("error", e);
-    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-  }
+    private static final Logger logger = LoggerFactory.getLogger(AdviceController.class);
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleException(Exception e) {
+        logger.error("error", e);
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

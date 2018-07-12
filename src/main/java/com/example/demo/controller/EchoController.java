@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class EchoController {
-	private static final Logger logger = LoggerFactory.getLogger(EchoController.class);
-	@GetMapping("/get")
-	public String get() {
-		logger.debug("call");
-		return "asdf";
-	}
+    private static final Logger logger = LoggerFactory.getLogger(EchoController.class);
+
+    @GetMapping("/get")
+    public String get() {
+        logger.debug("call");
+        return "asdf";
+    }
 }
