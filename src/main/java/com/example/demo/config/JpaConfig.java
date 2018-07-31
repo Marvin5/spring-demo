@@ -27,7 +27,7 @@ public class JpaConfig {
         dataSource.setJdbcUrl(url);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         return new TransactionAwareDataSourceProxy(dataSource);
     }
 
@@ -37,6 +37,8 @@ public class JpaConfig {
         vendorAdapter.setGenerateDdl(true);
         vendorAdapter.setShowSql(true);
         vendorAdapter.setDatabase(Database.MYSQL);
+        // using mysql 8 and default engine is innodb
+        vendorAdapter.setDatabasePlatform("org.hibernate.dialect.MySQL8Dialect");
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setPackagesToScan("com.example.demo.entity");
