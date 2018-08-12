@@ -112,5 +112,20 @@ public class MockitoTest {
 
     }
 
+    @Test
+    /**
+     * BDD Testing
+     */
+    public void shouldBuyBread() {
+        // Seller seller = mock(Seller.class);
+        // Shop shop = new Shop(seller);
+        // Given
+        // given(seller.askForBread()).willReturn(new Bread());
+        // When
+        // Goods goods = shop.buyBread();
+        // then
+        // assertTrue(goods.container(bread));
+    }
+
 
 }
