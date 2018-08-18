@@ -1,5 +1,9 @@
+
 server:
   port: 7301
+  servlet:
+    session:
+      timeout: 3600s
 spring:
   devtools:
     restart:

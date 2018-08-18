@@ -36,6 +36,8 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-validation'
     compile 'org.springframework.boot:spring-boot-starter-actuator'
     compile 'org.springframework.boot:spring-boot-starter-security'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis'
+    compile group: 'org.springframework.session', name: 'spring-session-data-redis'
     compile 'mysql:mysql-connector-java'
     compile 'com.google.guava:guava:24.1-jre'
     runtime 'org.springframework.boot:spring-boot-devtools'
