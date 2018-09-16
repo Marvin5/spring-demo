@@ -8,15 +8,6 @@ spring:
   devtools:
     restart:
       enabled: false
-  security:
-    user:
-      name: marvin
-      password: 123
-      roles: admin
-  session:
-    store-type: redis
-    redis:
-      namespace: spring:session
 logging:
   path: log
   level:

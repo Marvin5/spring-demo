@@ -13,7 +13,7 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
 
     @Override
-    @Transactional
+    @Transactional("jpaTransactionManager")
     public void createCustomer(String username, String password) {
         customerRepository.save(new Customer(null, username, password));
 

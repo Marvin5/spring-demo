@@ -39,7 +39,7 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis'
     compile group: 'org.springframework.session', name: 'spring-session-data-redis'
     compile 'mysql:mysql-connector-java'
-    compile 'com.google.guava:guava:24.1-jre'
+    compile 'com.google.guava:guava:26.0-jre'
     runtime 'org.springframework.boot:spring-boot-devtools'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
     testCompile 'com.h2database:h2:1.4.196'

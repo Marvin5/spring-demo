@@ -16,7 +16,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableJpaRepositories(enableDefaultTransactions = false)
+@EnableJpaRepositories(enableDefaultTransactions = false, basePackages = "com.example.demo.repository")
 @ConfigurationProperties("demo.db")
 public class JpaConfig {
     private String url;
@@ -48,8 +48,8 @@ public class JpaConfig {
         return factory;
     }
 
-    @Bean("jpaTransactioManager")
-    public PlatformTransactionManager jpaTransactioManager(EntityManagerFactory emf) {
+    @Bean("jpaTransactionManager")
+    public PlatformTransactionManager jpaTransactionManager(EntityManagerFactory emf) {
         JpaTransactionManager txManager = new JpaTransactionManager();
         txManager.setEntityManagerFactory(emf);
         return txManager;
