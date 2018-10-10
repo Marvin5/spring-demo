@@ -9,6 +9,6 @@ public class JdkTest {
 
     @Test
     public void test() {
-        logger.info("result is {} ", Long.valueOf("11101", 2));
+
     }
 }
