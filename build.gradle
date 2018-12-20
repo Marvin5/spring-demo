@@ -49,8 +49,8 @@ dependencies {
 
 idea {
     module {
-        downloadJavadoc = true;
-        downloadSources = true;
+        downloadJavadoc = true
+        downloadSources = true
     }
 }
 
@@ -78,5 +78,4 @@ task integrationTest(type: Test) {
     testClassesDirs = sourceSets.integrationTest.output.classesDirs
     classpath = sourceSets.integrationTest.runtimeClasspath
     // output.upToDateWhen{false}
-
 }
