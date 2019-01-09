@@ -20,8 +20,6 @@ demo:
     password: 123456
   jms:
     url: tcp://localhost:61616
-    username: root
-    password: 123456
   jta:
     enable: false
 management:
