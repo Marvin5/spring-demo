@@ -1,1 +1,3 @@
 rootProject.name = 'spring-demo'
+// include sub project
+include('spring-demo-core')
