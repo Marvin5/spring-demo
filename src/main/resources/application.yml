@@ -16,11 +16,11 @@ logging:
 demo:
   db:
     url: jdbc:mysql://localhost:3306/test?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: marvin
+    username: root
     password: 123456
   jms:
     url: tcp://localhost:61616
-    username: marvin
+    username: root
     password: 123456
   jta:
     enable: false

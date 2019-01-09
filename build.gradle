@@ -1,6 +1,6 @@
 plugins {
     id 'com.gorylenko.gradle-git-properties' version '1.5.1'
-    id 'org.springframework.boot' version '2.0.3.RELEASE'
+    id 'org.springframework.boot' version '2.1.1.RELEASE'
     id "io.spring.dependency-management" version "1.0.5.RELEASE"
 }
 
@@ -17,12 +17,12 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-    mavenCentral()
+    maven {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenLocal()
+        mavenCentral()
+    }
 }
-
-// when you want to customs library version, you can using it ext['slf4j.version'] = '1.7.20'
-ext['mysql.version'] = '8.0.11'
-ext['hibernate.version'] = '5.3.1.Final'
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-activemq'
@@ -30,6 +30,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile 'org.springframework.boot:spring-boot-starter-jta-atomikos'
     compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-webflux'
     compile 'org.springframework.boot:spring-boot-starter-jersey'
     compile 'org.springframework.boot:spring-boot-starter-web-services'
     compile 'org.springframework.boot:spring-boot-configuration-processor'
@@ -37,6 +38,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-actuator'
     compile 'org.springframework.boot:spring-boot-starter-security'
     compile 'org.springframework.boot:spring-boot-starter-quartz'
+    compile 'org.springframework.boot:spring-boot-starter-websocket'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis'
     compile group: 'org.springframework.session', name: 'spring-session-data-redis'
     compile 'mysql:mysql-connector-java'
