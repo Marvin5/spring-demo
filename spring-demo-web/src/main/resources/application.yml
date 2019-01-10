@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    include:
+      - core
+server:
+  port: 7301
+  servlet:
+    session:
+      timeout: 3600s
+logging:
+  file: log/web.log
+  level:
+    root: info
+    com.example.demo: debug

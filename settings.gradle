@@ -1,3 +1,6 @@
 rootProject.name = 'spring-demo'
 // include sub project
+include('docs')
 include('spring-demo-core')
+include('spring-demo-web')
+include('spring-demo-job')

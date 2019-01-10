@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "demo.db.url",
+      "type": "java.lang.String",
+      "description": "db url"
+  }
+] }

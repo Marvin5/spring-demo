@@ -1,11 +1,8 @@
-buildscript {
-    repositories {
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        mavenCentral()
-        mavenLocal()
-    }
+plugins {
+    id 'io.spring.dependency-management' version "1.0.5.RELEASE"
+    id 'org.springframework.boot' version '2.1.1.RELEASE'
+    id 'idea'
 }
-
 allprojects {
     repositories {
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
@@ -14,16 +11,55 @@ allprojects {
     }
 }
 
-
-configure(subprojects.findAll { it.name == 'spring-demo-core' }) {
+configure(subprojects - project(':docs')) {
     apply plugin: 'java'
     apply plugin: 'idea'
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'org.springframework.boot'
+    sourceCompatibility = 11
+    targetCompatibility = 11
     idea {
         module {
             downloadJavadoc = true
             downloadSources = true
         }
+    }
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-aop'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+        implementation 'com.google.guava:guava:26.0-jre'
+        annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+        testImplementation 'com.h2database:h2:1.4.196'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+    sourceSets {
+        intTest {
+            compileClasspath += sourceSets.main.output + sourceSets.test.output
+            runtimeClasspath += sourceSets.main.output + sourceSets.test.output
+        }
+    }
+
+    configurations {
+        intTestImplementation.extendsFrom testImplementation
+        intTestRuntimeOnly.extendsFrom testRuntimeOnly
+    }
+
+    task integrationTest(type: Test) {
+        description = 'Runs integration tests.'
+        group = 'verification'
+
+        testClassesDirs = sourceSets.intTest.output.classesDirs
+        classpath = sourceSets.intTest.runtimeClasspath
+        shouldRunAfter test
+    }
+    check.dependsOn integrationTest
+    compileJava.dependsOn processResources
+}
+
+idea {
+    module {
+        excludeDirs += file('log')
     }
 }
