@@ -8,3 +8,13 @@ dependencies {
     implementation 'mysql:mysql-connector-java'
 }
 
+// spring boot will using self-defined jar structure.
+// When using build/bootJar in application, it will not include spring-demo-core in jar.
+// Follow is fixing this problem
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
