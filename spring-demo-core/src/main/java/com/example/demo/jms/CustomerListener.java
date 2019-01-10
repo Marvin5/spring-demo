@@ -1,8 +1,6 @@
 package com.example.demo.jms;
 
-import com.example.demo.entity.Customer;
 import com.example.demo.service.CustomerService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,25 +11,22 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.TextMessage;
-import java.io.IOException;
 
 @Component
 public class CustomerListener {
-    private static final Logger logger = LoggerFactory.getLogger(CustomerListener.class);
-    @Autowired
-    private CustomerService customerSerice;
+  private static final Logger logger = LoggerFactory.getLogger(CustomerListener.class);
+  @Autowired private CustomerService customerSerice;
 
-    @JmsListener(destination = "test.que")
-    @Transactional(transactionManager = "jmsTransactionManager")
-    public void listen(Message m) {
-        TextMessage tm = (TextMessage) m;
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            Customer c = mapper.readValue(tm.getText(), Customer.class);
-            customerSerice.createCustomer(c.getUsername(), c.getPassword());
-            logger.debug("persist {} success", c);
-        } catch (IOException | JMSException e) {
-            logger.error("error", e);
-        }
+  @JmsListener(destination = "test.que")
+  @Transactional(transactionManager = "jmsTransactionManager")
+  public void listen(Message m) {
+
+    TextMessage tm = (TextMessage) m;
+    try {
+      logger.debug("hotswap test");
+      // logger.debug(((TextMessage) m).getText());
+    } catch (Exception e) {
+      logger.error("error", e);
     }
+  }
 }

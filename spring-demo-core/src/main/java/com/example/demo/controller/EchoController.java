@@ -11,18 +11,18 @@ import javax.ws.rs.POST;
 
 @RestController
 public class EchoController {
-    private static final Logger logger = LoggerFactory.getLogger(EchoController.class);
+  private static final Logger logger = LoggerFactory.getLogger(EchoController.class);
 
-    @GetMapping("/get")
-    public String get(HttpSession httpSession) {
-        httpSession.setAttribute("test", "test");
-        logger.debug("call");
-        return "get!!!";
-    }
+  @GetMapping("/get")
+  public String get(HttpSession httpSession) {
+    httpSession.setAttribute("test", "test");
+    logger.debug("call");
+    return "get!!!";
+  }
 
-    @PostMapping("/get")
-    public String postGet(){
-        logger.info("post get");
-        return "post get!!!";
-    }
+  @PostMapping("/get")
+  public String postGet() {
+    logger.info("post get");
+    return "post get!!!";
+  }
 }

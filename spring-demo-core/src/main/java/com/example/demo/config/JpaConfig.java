@@ -18,67 +18,68 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableJpaRepositories(enableDefaultTransactions = false, basePackages = "com.example.demo.repository")
+@EnableJpaRepositories(
+    enableDefaultTransactions = false,
+    basePackages = "com.example.demo.repository")
 @ConfigurationProperties("demo.db")
 public class JpaConfig {
-    private String url;
-    private String username;
-    private String password;
+  private String url;
+  private String username;
+  private String password;
 
-    @Bean
-    public DataSource dataSource() {
-        HikariDataSource dataSource = new HikariDataSource();
-        dataSource.setJdbcUrl(url);
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        return new TransactionAwareDataSourceProxy(dataSource);
-    }
+  @Bean
+  public DataSource dataSource() {
+    HikariDataSource dataSource = new HikariDataSource();
+    dataSource.setJdbcUrl(url);
+    dataSource.setUsername(username);
+    dataSource.setPassword(password);
+    dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+    return new TransactionAwareDataSourceProxy(dataSource);
+  }
 
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setGenerateDdl(true);
-        vendorAdapter.setShowSql(true);
-        vendorAdapter.setDatabase(Database.MYSQL);
-        // using mysql 8 and default engine is innodb
-        vendorAdapter.setDatabasePlatform("org.hibernate.dialect.MySQL8Dialect");
-        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-        factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("com.example.demo.entity");
-        factory.setDataSource(dataSource());
-        return factory;
-    }
+  @Bean
+  public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+    HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+    vendorAdapter.setGenerateDdl(true);
+    vendorAdapter.setShowSql(true);
+    vendorAdapter.setDatabase(Database.MYSQL);
+    // using mysql 8 and default engine is innodb
+    vendorAdapter.setDatabasePlatform("org.hibernate.dialect.MySQL8Dialect");
+    LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+    factory.setJpaVendorAdapter(vendorAdapter);
+    factory.setPackagesToScan("com.example.demo.entity");
+    factory.setDataSource(dataSource());
+    return factory;
+  }
 
-    @Bean("jpaTransactionManager")
-    public PlatformTransactionManager jpaTransactionManager(EntityManagerFactory emf) {
-        JpaTransactionManager txManager = new JpaTransactionManager();
-        txManager.setEntityManagerFactory(emf);
-        return txManager;
-    }
+  @Bean("jpaTransactionManager")
+  public PlatformTransactionManager jpaTransactionManager(EntityManagerFactory emf) {
+    JpaTransactionManager txManager = new JpaTransactionManager();
+    txManager.setEntityManagerFactory(emf);
+    return txManager;
+  }
 
-    public String getUrl() {
-        return url;
-    }
+  public String getUrl() {
+    return url;
+  }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+  public void setUrl(String url) {
+    this.url = url;
+  }
 
-    public String getUsername() {
-        return username;
-    }
+  public String getUsername() {
+    return username;
+  }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
+  public void setPassword(String password) {
+    this.password = password;
+  }
 }

@@ -11,13 +11,11 @@ import javax.annotation.Nonnull;
 
 @Service
 public class PersonServiceImpl implements PersonService {
-  @Autowired
-  private PersonRepository personRepository;
+  @Autowired private PersonRepository personRepository;
 
   @Override
   @Transactional("jpaTransactionManager")
   public void savePerson(@Nonnull Person p) {
     personRepository.save(p);
-
   }
 }

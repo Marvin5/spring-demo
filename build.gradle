@@ -14,12 +14,12 @@ allprojects {
     }
 }
 
-subprojects {
-    version = ''
-}
 
 configure(subprojects.findAll { it.name == 'spring-demo-core' }) {
+    apply plugin: 'java'
     apply plugin: 'idea'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
     idea {
         module {
             downloadJavadoc = true

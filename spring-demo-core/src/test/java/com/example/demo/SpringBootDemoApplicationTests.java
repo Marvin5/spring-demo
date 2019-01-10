@@ -23,24 +23,19 @@ import java.util.Optional;
 public class SpringBootDemoApplicationTests {
   private static Logger logger = LoggerFactory.getLogger(SpringBootDemoApplicationTests.class);
 
-  @Autowired
-  private CustomerService customerService;
-  @Autowired
-  private PhoneService phoneService;
-  @Autowired
-  private PhoneRepository phoneRepository;
+  @Autowired private CustomerService customerService;
+  @Autowired private PhoneService phoneService;
+  @Autowired private PhoneRepository phoneRepository;
 
-  @Autowired
-  private PersonRepository personRepository;
-  @Autowired
-  private PersonService personService;
+  @Autowired private PersonRepository personRepository;
+  @Autowired private PersonService personService;
 
   @Test
   public void test() {
-    Optional<Phone> phoneOptioanl = phoneRepository.findById("19fc9bf8-4bd0-4876-9852-ca6ccbb88c03");
+    Optional<Phone> phoneOptioanl =
+        phoneRepository.findById("19fc9bf8-4bd0-4876-9852-ca6ccbb88c03");
     Phone phone = phoneOptioanl.get();
     phone.setNumber("123456");
     phoneService.createPhone(phone);
   }
-
 }

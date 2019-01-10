@@ -1,4 +1,3 @@
 package com.example.demo.constant;
 
-public class StringConstant {
-}
+public class StringConstant {}

@@ -13,32 +13,39 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Bean
-    public UserDetailsService userDetailsService() {
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withDefaultPasswordEncoder().username("marvin").password("123").roles("admin").build());
-        return manager;
-    }
+  @Bean
+  public UserDetailsService userDetailsService() {
+    InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+    manager.createUser(
+        User.withDefaultPasswordEncoder()
+            .username("marvin")
+            .password("123")
+            .roles("admin")
+            .build());
+    return manager;
+  }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        // @formatter:off
-        http.authorizeRequests()
-                    .antMatchers("/get/**").hasRole("admin")
-                    .anyRequest().authenticated()
-                .and()
-                    .formLogin()
-                .and()
-                    .httpBasic()
-                .and()
-                    .logout()
-                        .logoutUrl("/logout")
-                        .invalidateHttpSession(true)
-                        // .deleteCookies()
-                .and()
-                    // enable csrf token.
-                    .csrf()
-                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-        // @formatter:off
-    }
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    // @formatter:off
+    http.authorizeRequests()
+        .antMatchers("/get/**")
+        .hasRole("admin")
+        .anyRequest()
+        .authenticated()
+        .and()
+        .formLogin()
+        .and()
+        .httpBasic()
+        .and()
+        .logout()
+        .logoutUrl("/logout")
+        .invalidateHttpSession(true)
+        // .deleteCookies()
+        .and()
+        // enable csrf token.
+        .csrf()
+        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+    // @formatter:off
+  }
 }

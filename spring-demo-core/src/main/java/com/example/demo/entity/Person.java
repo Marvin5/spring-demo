@@ -9,11 +9,13 @@ public class Person {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
+
   private String name;
-  @OneToMany(cascade = { CascadeType.ALL })
+
+  @OneToMany(cascade = {CascadeType.ALL})
   private List<Phone> phones = new ArrayList<>();
-  @Version
-  private int version;
+
+  @Version private int version;
 
   public Integer getId() {
     return id;

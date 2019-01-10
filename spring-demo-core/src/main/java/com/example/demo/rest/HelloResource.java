@@ -8,11 +8,11 @@ import javax.ws.rs.Path;
 
 @Path("/api/hello")
 public class HelloResource {
-    private static Logger logger = LoggerFactory.getLogger(HelloResource.class);
+  private static Logger logger = LoggerFactory.getLogger(HelloResource.class);
 
-    @GET
-    public String hello() {
-        logger.debug("sayHello");
-        return "hello";
-    }
+  @GET
+  public String hello() {
+    logger.debug("sayHello");
+    return "hello";
+  }
 }

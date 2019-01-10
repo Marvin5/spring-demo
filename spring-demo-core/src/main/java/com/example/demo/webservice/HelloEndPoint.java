@@ -8,9 +8,8 @@ import javax.jws.WebService;
 @WebService(serviceName = "HelloEndPoint")
 @Component
 public class HelloEndPoint {
-    @WebMethod
-    public String hello() {
-        return "hello";
-    }
-
+  @WebMethod
+  public String hello() {
+    return "hello";
+  }
 }

@@ -13,15 +13,14 @@ import javax.transaction.UserTransaction;
 
 @Configuration
 public class JtaConfig {
-    @Bean("jtaTransactionManager")
-    @ConditionalOnProperty(havingValue = "true", prefix = "demo.jta", value = "enable")
-    public PlatformTransactionManager jtaTransactionManager() {
-        JtaTransactionManager jtaTxManager = new JtaTransactionManager();
-        UserTransaction userTransaction = new UserTransactionImp();
-        TransactionManager userTxManager = new UserTransactionManager();
-        jtaTxManager.setUserTransaction(userTransaction);
-        jtaTxManager.setTransactionManager(userTxManager);
-        return jtaTxManager;
-    }
-
+  @Bean("jtaTransactionManager")
+  @ConditionalOnProperty(havingValue = "true", prefix = "demo.jta", value = "enable")
+  public PlatformTransactionManager jtaTransactionManager() {
+    JtaTransactionManager jtaTxManager = new JtaTransactionManager();
+    UserTransaction userTransaction = new UserTransactionImp();
+    TransactionManager userTxManager = new UserTransactionManager();
+    jtaTxManager.setUserTransaction(userTransaction);
+    jtaTxManager.setTransactionManager(userTxManager);
+    return jtaTxManager;
+  }
 }

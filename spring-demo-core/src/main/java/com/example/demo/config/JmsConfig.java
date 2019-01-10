@@ -19,62 +19,61 @@ import javax.jms.JMSException;
 @EnableJms
 @ConfigurationProperties(prefix = "demo.jms")
 public class JmsConfig {
-    private String username;
-    private String password;
-    private String url;
+  private String username;
+  private String password;
+  private String url;
 
-    @Bean
-    public ConnectionFactory connectionFactory() throws JMSException {
-        ActiveMQConnectionFactory acf = new ActiveMQConnectionFactory();
-        acf.setBrokerURL(url);
-        acf.setUserName(username);
-        acf.setPassword(password);
-        CachingConnectionFactory ccf = new CachingConnectionFactory(acf);
-        return new TransactionAwareConnectionFactoryProxy(ccf);
-    }
+  @Bean
+  public ConnectionFactory connectionFactory() throws JMSException {
+    ActiveMQConnectionFactory acf = new ActiveMQConnectionFactory();
+    acf.setBrokerURL(url);
+    acf.setUserName(username);
+    acf.setPassword(password);
+    CachingConnectionFactory ccf = new CachingConnectionFactory(acf);
+    return new TransactionAwareConnectionFactoryProxy(ccf);
+  }
 
-    @Bean("jmsTransactionManager")
-    public PlatformTransactionManager jmsTransactionManager() throws JMSException {
-        JmsTransactionManager txManager = new JmsTransactionManager();
-        txManager.setConnectionFactory(connectionFactory());
-        return txManager;
-    }
+  @Bean("jmsTransactionManager")
+  public PlatformTransactionManager jmsTransactionManager() throws JMSException {
+    JmsTransactionManager txManager = new JmsTransactionManager();
+    txManager.setConnectionFactory(connectionFactory());
+    return txManager;
+  }
 
-    @Bean
-    public JmsTemplate jmsTemplate() throws JMSException {
-        return new JmsTemplate(connectionFactory());
-    }
+  @Bean
+  public JmsTemplate jmsTemplate() throws JMSException {
+    return new JmsTemplate(connectionFactory());
+  }
 
-    @Bean
-    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory() throws JMSException {
-        DefaultJmsListenerContainerFactory containerFactory = new DefaultJmsListenerContainerFactory();
-        containerFactory.setConnectionFactory(connectionFactory());
-        containerFactory.setTransactionManager(jmsTransactionManager());
-        return containerFactory;
-    }
+  @Bean
+  public DefaultJmsListenerContainerFactory jmsListenerContainerFactory() throws JMSException {
+    DefaultJmsListenerContainerFactory containerFactory = new DefaultJmsListenerContainerFactory();
+    containerFactory.setConnectionFactory(connectionFactory());
+    containerFactory.setTransactionManager(jmsTransactionManager());
+    return containerFactory;
+  }
 
-    public String getUsername() {
-        return username;
-    }
+  public String getUsername() {
+    return username;
+  }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public String getUrl() {
-        return url;
-    }
+  public String getUrl() {
+    return url;
+  }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
+  public void setUrl(String url) {
+    this.url = url;
+  }
 }

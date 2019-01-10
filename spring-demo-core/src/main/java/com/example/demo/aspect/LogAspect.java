@@ -16,35 +16,34 @@ import java.lang.reflect.Method;
 @Aspect
 @Component
 public class LogAspect {
-    private static final Logger logger = LoggerFactory.getLogger(LogAspect.class);
+  private static final Logger logger = LoggerFactory.getLogger(LogAspect.class);
 
-    @Pointcut("@annotation(com.example.demo.aspect.annotation.LogAdvice)")
-    private void pointCut() {
+  @Pointcut("@annotation(com.example.demo.aspect.annotation.LogAdvice)")
+  private void pointCut() {}
+
+  @Around("pointCut()")
+  public Object log(ProceedingJoinPoint pjp) throws Throwable {
+    Object returnVal = null;
+    Signature signature = pjp.getSignature();
+    if (signature instanceof MethodSignature) {
+      MethodSignature methodSignature = (MethodSignature) signature;
+      Method method = methodSignature.getMethod();
+      LogAdvice logAdvice = method.getAnnotation(LogAdvice.class);
+      logger.info("log name is {}", logAdvice.name());
     }
+    Object[] objects = pjp.getArgs();
+    try {
+      logger.info("before");
 
-    @Around("pointCut()")
-    public Object log(ProceedingJoinPoint pjp) throws Throwable {
-        Object returnVal = null;
-        Signature signature = pjp.getSignature();
-        if (signature instanceof MethodSignature) {
-            MethodSignature methodSignature = (MethodSignature) signature;
-            Method method = methodSignature.getMethod();
-            LogAdvice logAdvice = method.getAnnotation(LogAdvice.class);
-            logger.info("log name is {}", logAdvice.name());
-        }
-        Object[] objects = pjp.getArgs();
-        try {
-            logger.info("before");
+      for (Object object : objects) {
+        logger.info("argu:{}", object);
+      }
+      returnVal = pjp.proceed();
+      logger.info("after");
 
-            for (Object object : objects) {
-                logger.info("argu:{}", object);
-            }
-            returnVal = pjp.proceed();
-            logger.info("after");
-
-        } catch (Exception e) {
-            logger.info("error");
-        }
-        return returnVal;
+    } catch (Exception e) {
+      logger.info("error");
     }
+    return returnVal;
+  }
 }

@@ -7,20 +7,20 @@ import org.springframework.boot.actuate.endpoint.annotation.WriteOperation;
 
 @Endpoint(id = "hahaha")
 public class CustomsEndPoint {
-    private Integer anInt = 1;
+  private Integer anInt = 1;
 
-    @ReadOperation
-    public int getAnInt() {
-        return anInt;
-    }
+  @ReadOperation
+  public int getAnInt() {
+    return anInt;
+  }
 
-    @WriteOperation
-    public void setAnInt(Integer anInt) {
-        this.anInt = anInt;
-    }
+  @WriteOperation
+  public void setAnInt(Integer anInt) {
+    this.anInt = anInt;
+  }
 
-    @DeleteOperation
-    public void deleteAnInt() {
-        this.anInt = null;
-    }
+  @DeleteOperation
+  public void deleteAnInt() {
+    this.anInt = null;
+  }
 }

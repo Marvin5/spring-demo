@@ -8,12 +8,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EchoServiceImpl implements EchoService {
-    private static final Logger logger = LoggerFactory.getLogger(EchoServiceImpl.class);
+  private static final Logger logger = LoggerFactory.getLogger(EchoServiceImpl.class);
 
-    @Override
-    @LogAdvice
-    public void echo() {
-        logger.info("echo");
-    }
-
+  @Override
+  @LogAdvice
+  public void echo() {
+    logger.info("echo");
+  }
 }

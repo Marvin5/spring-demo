@@ -7,9 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class JmxConfig {
 
-    @Bean
-    public CustomsEndPoint customsEndPoint() {
-        return new CustomsEndPoint();
-    }
-
+  @Bean
+  public CustomsEndPoint customsEndPoint() {
+    return new CustomsEndPoint();
+  }
 }

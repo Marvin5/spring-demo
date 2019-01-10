@@ -7,17 +7,15 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AssertJTest {
-    private Calculator calculator;
+  private Calculator calculator;
 
-    @Before
-    public void setUp() {
-        calculator = new Calculator();
-    }
+  @Before
+  public void setUp() {
+    calculator = new Calculator();
+  }
 
-    @Test
-    public void test1() {
-        assertThat(calculator.add(1, 1)).isEqualTo(2);
-    }
-
-
+  @Test
+  public void test1() {
+    assertThat(calculator.add(1, 1)).isEqualTo(2);
+  }
 }

@@ -9,20 +9,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PhoneServiceImpl implements PhoneService {
-    @Autowired
-    private PhoneRepository phoneRepository;
+  @Autowired private PhoneRepository phoneRepository;
 
-    @Override
-    @Transactional("jpaTransactionManager")
-    public void createPhone(Phone phone) {
-        phoneRepository.save(phone);
-    }
+  @Override
+  @Transactional("jpaTransactionManager")
+  public void createPhone(Phone phone) {
+    phoneRepository.save(phone);
+  }
 
-    public PhoneRepository getPhoneRepository() {
-        return phoneRepository;
-    }
+  public PhoneRepository getPhoneRepository() {
+    return phoneRepository;
+  }
 
-    public void setPhoneRepository(PhoneRepository phoneRepository) {
-        this.phoneRepository = phoneRepository;
-    }
+  public void setPhoneRepository(PhoneRepository phoneRepository) {
+    this.phoneRepository = phoneRepository;
+  }
 }

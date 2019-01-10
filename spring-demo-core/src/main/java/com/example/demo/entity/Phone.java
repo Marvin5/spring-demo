@@ -11,15 +11,15 @@ public class Phone {
   @Id
   @GeneratedValue(generator = "phone_id_generator")
   private String id;
+
   private String number;
   // @Enumerated(EnumType.STRING)
   // testing for jpa converter
   @Convert(converter = PhoneType.PhoneTypeConverter.class)
   private PhoneType type;
-  @ManyToOne
-  private Person person;
-  @Version
-  private int version;
+
+  @ManyToOne private Person person;
+  @Version private int version;
 
   public String getId() {
     return id;
@@ -63,10 +63,6 @@ public class Phone {
 
   @Override
   public String toString() {
-    return "Phone{" +
-        "id='" + id + '\'' +
-        ", number='" + number + '\'' +
-        ", type=" + type +
-        '}';
+    return "Phone{" + "id='" + id + '\'' + ", number='" + number + '\'' + ", type=" + type + '}';
   }
 }
