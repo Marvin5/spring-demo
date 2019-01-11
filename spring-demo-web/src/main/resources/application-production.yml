@@ -1,0 +1,18 @@
+demo:
+  redis:
+    host: 172.17.0.4
+    port: 6379
+spring:
+  profiles:
+    include:
+      - core-production
+server:
+  port: 7301
+  servlet:
+    session:
+      timeout: 3600s
+logging:
+  file: log/web.log
+  level:
+    root: info
+    com.example.demo: debug

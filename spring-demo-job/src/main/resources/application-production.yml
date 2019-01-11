@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    include:
+      - core-production
+logging:
+  file: log/job.log
+  level:
+    root: info
+    com.example.demo: debug

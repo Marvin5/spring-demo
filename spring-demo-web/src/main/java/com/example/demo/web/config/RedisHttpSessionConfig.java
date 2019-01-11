@@ -2,6 +2,7 @@ package com.example.demo.web.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
@@ -23,11 +24,14 @@ import javax.servlet.http.HttpSessionListener;
  */
 @EnableRedisHttpSession
 @Configuration
+@ConfigurationProperties("demo.redis")
 public class RedisHttpSessionConfig {
+  private String host;
+  private int port;
 
   @Bean
   public LettuceConnectionFactory lettuceConnectionFactory() {
-    return new LettuceConnectionFactory();
+    return new LettuceConnectionFactory(host, port);
   }
 
   /**
@@ -58,5 +62,21 @@ public class RedisHttpSessionConfig {
     public void sessionDestroyed(HttpSessionEvent se) {
       logger.info("{} has destroyed", se.getSession());
     }
+  }
+
+  public String getHost() {
+    return host;
+  }
+
+  public void setHost(String host) {
+    this.host = host;
+  }
+
+  public int getPort() {
+    return port;
+  }
+
+  public void setPort(int port) {
+    this.port = port;
   }
 }
