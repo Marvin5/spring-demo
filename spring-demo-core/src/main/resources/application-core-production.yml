@@ -1,10 +1,10 @@
 demo:
   db:
-    url: jdbc:mysql://172.17.0.5:3306/test?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    url: jdbc:mysql://172.19.0.5:3306/test?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: root
     password: 123456
   jms:
-    url: tcp://172.17.0.6:61616
+    url: tcp://172.19.0.6:61616
   jta:
     enable: false
 management:

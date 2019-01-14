@@ -3,10 +3,8 @@ package com.example.demo.web.config;
 import com.example.demo.core.exception.BusinessException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver;
 
@@ -26,8 +24,7 @@ public class BusinessExceptionHandlerExceptionResolver extends AbstractHandlerEx
       }
       if (!StringUtils.hasLength(ex.getMessage())) {
         response.sendError(HttpStatus.BAD_REQUEST.value());
-      }
-      else {
+      } else {
         response.sendError(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
       }
       return new ModelAndView();

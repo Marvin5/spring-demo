@@ -50,7 +50,7 @@ docker build --tag spring-demo-web --build-arg profile=production .
 运行docker镜像
 
 ```bash
-docker run --name spring-demo-web -p 7301:7301 spring-demo-web
+docker run --name spring-demo-web --network my-bridge -p 7301:7301 spring-demo-web
 ```
 
 ## Contribute
