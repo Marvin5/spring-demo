@@ -1,3 +1,9 @@
+buildscript {
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    }
+}
+
 plugins {
     id 'io.spring.dependency-management' version "1.0.5.RELEASE"
     id 'org.springframework.boot' version '2.1.1.RELEASE'
@@ -24,6 +30,7 @@ configure(subprojects - project(':docs')) {
             downloadSources = true
         }
     }
+
 
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-aop'
