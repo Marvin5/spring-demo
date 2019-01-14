@@ -27,9 +27,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    // @formatter:off
     http.authorizeRequests()
-        .antMatchers("/get/**")
+        .antMatchers("/api/pub/**")
+        .permitAll()
+        .antMatchers("/api/admin/**")
         .hasRole("admin")
         .anyRequest()
         .authenticated()
@@ -46,6 +47,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // enable csrf token.
         .csrf()
         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-    // @formatter:off
   }
 }
