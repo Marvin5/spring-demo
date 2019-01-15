@@ -21,7 +21,7 @@ public class EchoController {
     throw new BusinessException("business error");
   }
 
-  @PostMapping("/get")
+  @GetMapping("/get")
   public String postGet() {
     logger.info("post get");
     return "post get!!!";

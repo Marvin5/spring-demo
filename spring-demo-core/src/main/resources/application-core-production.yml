@@ -20,3 +20,5 @@ management:
       cors:
         allowed-methods: GET,POST
         allowed-origins: http://example.com
+logging:
+  config: classpath:log4j2-prod.xml

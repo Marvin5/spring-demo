@@ -11,8 +11,3 @@ server:
   servlet:
     session:
       timeout: 3600s
-logging:
-  file: log/web.log
-  level:
-    root: info
-    com.example.demo: debug
