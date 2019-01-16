@@ -12,9 +12,6 @@
         <Console name="Console" target="SYSTEM_OUT" follow="true">
             <PatternLayout pattern="${sys:CONSOLE_LOG_PATTERN}" />
         </Console>
-        <Socket name="Socket" host="localhost" port="12345">
-            <JsonLayout compact="true" eventEol="true"/>
-        </Socket>
     </Appenders>
     <Loggers>
         <Logger name="org.apache.catalina.startup.DigesterFactory" level="error" />
@@ -27,7 +24,6 @@
         <logger name="org.springframework.boot.actuate.endpoint.jmx" level="warn"/>
         <Root level="info">
             <AppenderRef ref="Console" />
-            <AppenderRef ref="Socket"/>
         </Root>
     </Loggers>
 </Configuration>
