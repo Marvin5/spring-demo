@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class BusinessExceptionHandlerExceptionResolver extends AbstractHandlerExceptionResolver {
-  private static Logger logger =
+  private static  final Logger logger =
       LoggerFactory.getLogger(BusinessExceptionHandlerExceptionResolver.class);
 
   @Override
@@ -32,5 +32,9 @@ public class BusinessExceptionHandlerExceptionResolver extends AbstractHandlerEx
       logger.warn("Failure while trying to resolve exception", e);
     }
     return null;
+  }
+
+  public BusinessExceptionHandlerExceptionResolver() {
+    setOrder(Integer.MIN_VALUE);
   }
 }

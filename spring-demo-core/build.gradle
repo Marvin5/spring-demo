@@ -1,11 +1,15 @@
 apply plugin: 'java-library'
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    api 'org.springframework.boot:spring-boot-starter-aop'
+    api 'org.springframework.boot:spring-boot-starter-validation'
+    api 'org.springframework.boot:spring-boot-starter-log4j2'
+    api 'org.springframework.boot:spring-boot-starter-data-jpa'
+    api 'com.google.guava:guava:26.0-jre'
     implementation 'org.springframework.boot:spring-boot-starter-activemq'
     implementation 'org.springframework.boot:spring-boot-starter-jta-atomikos'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'mysql:mysql-connector-java'
+    runtime 'mysql:mysql-connector-java'
 }
 
 // spring boot will using self-defined jar structure.
