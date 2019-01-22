@@ -37,8 +37,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
         .formLogin()
         .and()
-        .httpBasic()
-        .and()
         .logout()
         .logoutUrl("/logout")
         .invalidateHttpSession(true)
@@ -46,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
         // enable csrf token.
         .csrf()
+        .ignoringAntMatchers("/login")
         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
   }
 }

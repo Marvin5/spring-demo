@@ -9,6 +9,11 @@ plugins {
     id 'org.springframework.boot' version '2.1.1.RELEASE'
     id 'idea'
 }
+
+ext {
+    guavaVersion = '26.0-jre'
+}
+
 allprojects {
     repositories {
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
@@ -43,7 +48,7 @@ configure(subprojects - project(':docs')) {
             exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
         }
     }
-    
+
     sourceSets {
         intTest {
             compileClasspath += sourceSets.main.output + sourceSets.test.output
