@@ -1,13 +1,13 @@
 demo:
   redis:
-    host: 10.222.23.61
+    host: 192.168.3.22
     port: 6379
 spring:
   profiles:
     include:
       - core
 server:
-  port: 7301
+  port: 7070
   servlet:
     session:
       timeout: 3600s
