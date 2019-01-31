@@ -6,6 +6,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,11 +25,11 @@ import java.util.Base64;
 /** This test case is show how JWT work. */
 public class JwtTest {
   private static Logger logger = LoggerFactory.getLogger(JwtTest.class);
-  private RSAPrivateKey privateKey;
-  private RSAPublicKey publicKey;
+  private static RSAPrivateKey privateKey;
+  private static RSAPublicKey publicKey;
 
-  @Before
-  public void setUp() throws Exception {
+  @BeforeClass
+  public static void setUpBeforeClass() throws Exception {
     Resource keyStoreResource = new ClassPathResource(".keystore");
     KeyStore keyStore = KeyStore.getInstance(keyStoreResource.getFile(), "123456".toCharArray());
     privateKey = (RSAPrivateKey) keyStore.getKey("mykey", "123456".toCharArray());
