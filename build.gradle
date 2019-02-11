@@ -12,7 +12,8 @@ plugins {
 
 ext {
     guavaVersion = '26.0-jre'
-    springVersion2 = '2.1.1.RELEASE'
+    springSecurityOauthBootVersion = '2.1.1.RELEASE'
+    springSessionVersion = '2.1.1.RELEASE'
 }
 
 allprojects {
