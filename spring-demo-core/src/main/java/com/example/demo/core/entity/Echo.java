@@ -10,6 +10,8 @@ import java.time.Instant;
 
 @Entity
 public class Echo {
+
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;

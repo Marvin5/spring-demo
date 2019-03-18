@@ -18,9 +18,9 @@ ext {
 
 allprojects {
     repositories {
+        mavenLocal()
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         mavenCentral()
-        mavenLocal()
     }
 }
 
@@ -43,11 +43,17 @@ configure(subprojects - project(':docs')) {
         annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
         testImplementation 'com.h2database:h2:1.4.196'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation("org.junit.jupiter:junit-jupiter-api")
+        testImplementation 'org.springframework.security:spring-security-test'
+        testRuntime("org.junit.jupiter:junit-jupiter-engine")
+        testImplementation("junit:junit")
+        testRuntime("org.junit.vintage:junit-vintage-engine")
     }
 
     configurations {
         all {
             exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+//            exclude group: 'junit', module: 'junit'
         }
     }
 
@@ -73,6 +79,11 @@ configure(subprojects - project(':docs')) {
     }
     check.dependsOn integrationTest
     compileJava.dependsOn processResources
+
+
+    test {
+        useJUnitPlatform()
+    }
 }
 
 configure(subprojects.findAll {
@@ -85,3 +96,5 @@ idea {
         excludeDirs += file('log')
     }
 }
+
+
