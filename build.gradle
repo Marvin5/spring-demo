@@ -2,12 +2,16 @@ buildscript {
     repositories {
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
     }
+    dependencies {
+        classpath 'com.h2database:h2:1.4.197'
+    }
 }
 
 plugins {
     id "org.asciidoctor.convert" version "1.5.3"
     id 'io.spring.dependency-management' version "1.0.5.RELEASE"
     id 'org.springframework.boot' version '2.1.1.RELEASE'
+    id "org.flywaydb.flyway" version "5.2.4"
     id 'idea'
 }
 
@@ -108,5 +112,10 @@ idea {
     module {
         excludeDirs += file('log')
     }
+}
+
+flyway {
+    url = 'jdbc:h2:file:./target/foobar'
+    user = 'sa'
 }
 
