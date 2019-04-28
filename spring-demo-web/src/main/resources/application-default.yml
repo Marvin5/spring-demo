@@ -1,6 +1,6 @@
 demo:
   redis:
-    host: 10.222.23.61
+    host: 192.168.3.50
     port: 6379
 spring:
   profiles:
