@@ -2,6 +2,8 @@ spring:
   profiles:
     include:
       - core
+  quartz:
+    job-store-type: memory
 logging:
   file: log/job.log
   level:

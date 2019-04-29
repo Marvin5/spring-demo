@@ -1,10 +1,12 @@
 demo:
   db:
-    url: jdbc:mysql://192.168.3.50:3306/test?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    url: jdbc:mysql://192.168.3.42:3306/test?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: root
-    password: 123
+    password: 123456
   jms:
-    url: tcp://192.168.3.50:61616
+    url: tcp://192.168.3.42:61616
+    username: marvin
+    password: 123
   jta:
     enable: false
 management:
@@ -22,3 +24,7 @@ management:
         allowed-origins: http://example.com
 logging:
   config: classpath:log4j2.xml
+spring:
+  data:
+    mongodb:
+      host: 192.168.3.42

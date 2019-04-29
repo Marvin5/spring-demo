@@ -3,6 +3,7 @@ package com.example.demo.core.config;
 import com.google.common.collect.ImmutableMap;
 import com.zaxxer.hikari.HikariDataSource;
 import org.hibernate.cfg.AvailableSettings;
+import org.springframework.boot.autoconfigure.quartz.QuartzDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy;
 import org.springframework.context.annotation.Bean;
@@ -31,6 +32,7 @@ public class JpaConfig {
   private String password;
 
   @Bean
+  @QuartzDataSource
   public DataSource dataSource() {
     HikariDataSource dataSource = new HikariDataSource();
     dataSource.setJdbcUrl(url);

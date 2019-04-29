@@ -5,10 +5,12 @@ dependencies {
     api 'org.springframework.boot:spring-boot-starter-validation'
     api 'org.springframework.boot:spring-boot-starter-log4j2'
     api 'org.springframework.boot:spring-boot-starter-data-jpa'
+    api 'org.springframework.boot:spring-boot-starter-data-mongodb'
     api 'org.springframework.boot:spring-boot-starter-cache'
+    api 'org.springframework.boot:spring-boot-starter-security'
     api "com.google.guava:guava:${guavaVersion}"
     api 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.0'
-    implementation 'org.springframework.boot:spring-boot-starter-activemq'
+    implementation 'org.springframework.boot:spring-boot-starter-artemis'
     implementation 'org.springframework.boot:spring-boot-starter-jta-atomikos'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     runtime 'mysql:mysql-connector-java'
@@ -27,7 +29,7 @@ jar {
 }
 
 flyway {
-    url = 'jdbc:mysql://192.168.3.22:3306/test2?useSSL=false'
+    url = 'jdbc:mysql://192.168.3.22:3306/test?useSSL=false'
     user = 'root'
     password = '123456'
 }

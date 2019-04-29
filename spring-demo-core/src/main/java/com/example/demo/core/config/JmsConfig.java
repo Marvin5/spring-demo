@@ -1,6 +1,7 @@
 package com.example.demo.core.config;
 
-import org.apache.activemq.ActiveMQConnectionFactory;
+import org.apache.activemq.artemis.api.jms.ActiveMQJMSClient;
+import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,29 +25,28 @@ public class JmsConfig {
   private String url;
 
   @Bean
-  public ConnectionFactory connectionFactory() throws JMSException {
-    ActiveMQConnectionFactory acf = new ActiveMQConnectionFactory();
-    acf.setBrokerURL(url);
-    acf.setUserName(username);
+  public ConnectionFactory connectionFactory() throws Exception {
+    ActiveMQConnectionFactory acf = ActiveMQJMSClient.createConnectionFactory(url,"marvin");
+    acf.setUser(username);
     acf.setPassword(password);
     CachingConnectionFactory ccf = new CachingConnectionFactory(acf);
     return new TransactionAwareConnectionFactoryProxy(ccf);
   }
 
   @Bean("jmsTransactionManager")
-  public PlatformTransactionManager jmsTransactionManager() throws JMSException {
+  public PlatformTransactionManager jmsTransactionManager() throws Exception {
     JmsTransactionManager txManager = new JmsTransactionManager();
     txManager.setConnectionFactory(connectionFactory());
     return txManager;
   }
 
   @Bean
-  public JmsTemplate jmsTemplate() throws JMSException {
+  public JmsTemplate jmsTemplate() throws Exception {
     return new JmsTemplate(connectionFactory());
   }
 
   @Bean
-  public DefaultJmsListenerContainerFactory jmsListenerContainerFactory() throws JMSException {
+  public DefaultJmsListenerContainerFactory jmsListenerContainerFactory() throws Exception {
     DefaultJmsListenerContainerFactory containerFactory = new DefaultJmsListenerContainerFactory();
     containerFactory.setConnectionFactory(connectionFactory());
     containerFactory.setTransactionManager(jmsTransactionManager());
